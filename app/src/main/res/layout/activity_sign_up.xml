@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguide1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintGuide_percent="0.065"
+        android:orientation="vertical"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguide2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.935" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.25"
+        android:orientation="horizontal"/>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardsignup"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="#68B39F"
+        app:layout_constraintEnd_toEndOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_inner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vguideinner1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintGuide_percent="0.065"
+                android:orientation="vertical"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vguideinner2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.935"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Full Name"
+                android:layout_marginTop="20dp"
+                app:boxCornerRadiusTopStart="40dp"
+                app:boxCornerRadiusTopEnd="40dp"
+                app:boxCornerRadiusBottomStart="40dp"
+                app:boxCornerRadiusBottomEnd="40dp"
+                app:endIconMode="custom"
+                app:boxBackgroundColor="#F5F5F5"
+                app:endIconDrawable="@drawable/baseline_person_24"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                app:layout_constraintTop_toTopOf="parent">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etname"
+                    android:paddingVertical="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Age"
+                android:layout_marginTop="20dp"
+                app:boxCornerRadiusTopStart="40dp"
+                app:boxCornerRadiusTopEnd="40dp"
+                app:boxCornerRadiusBottomStart="40dp"
+                app:boxCornerRadiusBottomEnd="40dp"
+                app:endIconMode="custom"
+                app:boxBackgroundColor="#F5F5F5"
+
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                app:layout_constraintTop_toBottomOf="@+id/tvname">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etage"
+                    android:paddingVertical="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvweight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Weight"
+                android:layout_marginTop="20dp"
+                app:boxCornerRadiusTopStart="40dp"
+                app:boxCornerRadiusTopEnd="40dp"
+                app:boxCornerRadiusBottomStart="40dp"
+                app:boxCornerRadiusBottomEnd="40dp"
+                app:endIconMode="custom"
+                app:boxBackgroundColor="#F5F5F5"
+
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                app:layout_constraintTop_toBottomOf="@+id/tvage">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etweight"
+                    android:paddingVertical="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvupemail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+                android:layout_marginTop="20dp"
+                app:boxCornerRadiusTopStart="40dp"
+                app:boxCornerRadiusTopEnd="40dp"
+                app:boxCornerRadiusBottomStart="40dp"
+                app:boxCornerRadiusBottomEnd="40dp"
+                app:endIconMode="custom"
+                app:boxBackgroundColor="#F5F5F5"
+                app:endIconDrawable="@drawable/baseline_email_24"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                app:layout_constraintTop_toBottomOf="@+id/tvweight">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etupemail"
+                    android:paddingVertical="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tvuppsswrd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:layout_marginTop="20dp"
+                app:boxCornerRadiusTopStart="40dp"
+                app:boxCornerRadiusTopEnd="40dp"
+                app:boxBackgroundColor="#F5F5F5"
+                app:boxCornerRadiusBottomStart="40dp"
+                app:boxCornerRadiusBottomEnd="40dp"
+                app:endIconMode="password_toggle"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                app:layout_constraintTop_toBottomOf="@+id/tvupemail">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etuppsswrd"
+                    android:paddingVertical="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <RadioGroup
+                android:id="@+id/genderGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                app:layout_constraintTop_toBottomOf="@id/tvuppsswrd"
+                app:layout_constraintStart_toEndOf="@id/vguideinner1"
+                app:layout_constraintEnd_toStartOf="@id/vguideinner2"
+
+                >
+
+
+                <RadioButton
+                    android:id="@+id/radioMale"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Male"/>
+
+                <RadioButton
+                    android:id="@+id/radioFemale"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="Female"/>
+
+
+            </RadioGroup>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_signup25"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:text="Sign Up"
+                android:padding="15dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/genderGroup"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                android:backgroundTint="#CDE0C9"/>
+            <TextView
+                android:id="@+id/etalready"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account?"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_signup25"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_alrsignin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:text="Sign In"
+                app:layout_constraintTop_toBottomOf="@+id/etalready"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

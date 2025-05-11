@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountFragment">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguide1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintGuide_percent="0.065"
+        android:orientation="vertical"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguide2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.935" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.25"
+        android:orientation="horizontal"/>
+    <TextView
+        android:id="@+id/tvyp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Profile"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toTopOf="@+id/hguide1"
+        app:layout_constraintStart_toStartOf="@+id/vguide1"
+        app:layout_constraintEnd_toEndOf="@+id/vguide2"/>
+    <TextView
+        android:id="@+id/tvname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sample Name"
+        app:layout_constraintStart_toStartOf="@+id/vguide1"
+        app:layout_constraintTop_toBottomOf="@+id/tvyp"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/tvage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Age"
+        app:layout_constraintStart_toStartOf="@+id/vguide1"
+        app:layout_constraintTop_toBottomOf="@+id/tvname"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/tvgender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender"
+        app:layout_constraintStart_toStartOf="@+id/vguide1"
+        app:layout_constraintTop_toBottomOf="@+id/tvage"
+        android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/tvweight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weight"
+        app:layout_constraintStart_toStartOf="@+id/vguide1"
+        app:layout_constraintTop_toBottomOf="@+id/tvgender"
+        android:textSize="20sp"/>
+    <ImageView
+        android:id="@+id/genderimage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="80dp"
+        android:src="@drawable/female"
+
+        app:layout_constraintStart_toEndOf="@+id/tvname"
+        app:layout_constraintTop_toBottomOf="@+id/hguide1"
+        app:layout_constraintBottom_toTopOf="@+id/hguide3"
+        app:layout_constraintEnd_toStartOf="@+id/vguide2"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/totalCardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="@+id/vguide1"
+        app:layout_constraintEnd_toEndOf="@+id/vguide2"
+        app:layout_constraintTop_toBottomOf="@+id/hguide3">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/tvtotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Steps Walked"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/totalsteps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="100dp"
+                android:textSize="40sp"
+                android:text="0"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_logout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/vguide1"
+        app:layout_constraintEnd_toStartOf="@+id/vguide2"
+        app:layout_constraintTop_toBottomOf="@+id/totalCardView"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#68B39F"
+        android:paddingVertical="20dp"
+        android:text="LOG OUT"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

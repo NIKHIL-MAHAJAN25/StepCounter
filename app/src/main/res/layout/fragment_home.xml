@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeFragment">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguide3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguide1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintGuide_percent="0.045"
+        android:orientation="vertical"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguide2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+    <TextView
+        android:id="@+id/tvgm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Good Morning"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/hguide1"
+        app:layout_constraintStart_toStartOf="@+id/vguide1"
+        app:layout_constraintEnd_toEndOf="@+id/vguide2"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/tvgm2"
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="Ready To Achieve Your Goal Today?"
+        app:layout_constraintTop_toBottomOf="@+id/tvgm"
+        app:layout_constraintStart_toStartOf="@+id/vguide1"
+        app:layout_constraintEnd_toEndOf="@+id/vguide2"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/stepCardView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        android:backgroundTint="#BBFB4C"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/vguide1"
+        app:layout_constraintEnd_toEndOf="@+id/vguide2"
+        app:layout_constraintTop_toBottomOf="@+id/tvgm2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/stepProgress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:indicatorSize="200dp"
+                app:trackThickness="18dp"
+                app:trackColor="@color/white"
+                app:indicatorColor="@color/black"
+                app:trackCornerRadius="8dp"
+                android:max="10000"
+                android:progress="0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/stepCountText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="@id/stepProgress"
+                app:layout_constraintBottom_toBottomOf="@id/stepProgress"
+                app:layout_constraintStart_toStartOf="@id/stepProgress"
+                app:layout_constraintEnd_toEndOf="@id/stepProgress" />
+
+            <TextView
+                android:id="@+id/stepsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STEPS"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+
+                app:layout_constraintTop_toBottomOf="@id/stepCountText"
+                app:layout_constraintStart_toStartOf="@id/stepProgress"
+                app:layout_constraintEnd_toEndOf="@id/stepProgress" />
+
+            <TextView
+                android:id="@+id/goalLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Goal: 10000"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+
+                app:layout_constraintTop_toBottomOf="@id/stepsLabel"
+                app:layout_constraintStart_toStartOf="@id/stepProgress"
+                app:layout_constraintEnd_toEndOf="@id/stepProgress" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/calorieCardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        android:backgroundTint="#BBFB4C"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintStart_toEndOf="@+id/vguide1"
+        app:layout_constraintEnd_toStartOf="@+id/vguide3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/stepCardView">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        <TextView
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Calories
+            Burned(Kcal)"/>
+        <TextView
+            android:id="@+id/tvcalburned"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="50sp"
+            android:layout_gravity="center"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+    android:id="@+id/distanceCardView"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="6dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="5dp"
+android:layout_marginBottom="8dp"
+        android:backgroundTint="#BBFB4C"
+    app:layout_constraintStart_toEndOf="@+id/vguide3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/vguide2"
+        app:layout_constraintTop_toBottomOf="@+id/stepCardView">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="Distance Walked(M)"/>
+            <TextView
+                android:id="@+id/tvdistance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="0"
+                android:textSize="50sp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

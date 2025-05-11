@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguide1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintGuide_percent="0.065"
+        android:orientation="vertical"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vguide2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.935" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.97" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hguide3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.25"
+        android:orientation="horizontal"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/vguide1"
+        app:layout_constraintBottom_toTopOf="@+id/hguide1"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardsignin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/hguide3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+       android:backgroundTint="#68B39F"
+        app:layout_constraintEnd_toEndOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/const_inner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vguideinner1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintGuide_percent="0.065"
+                android:orientation="vertical"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vguideinner2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.935" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etemail1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Email"
+
+                android:layout_marginTop="20dp"
+                app:boxCornerRadiusTopStart="40dp"
+                app:boxCornerRadiusTopEnd="40dp"
+                app:boxCornerRadiusBottomStart="40dp"
+                app:boxCornerRadiusBottomEnd="40dp"
+                app:boxBackgroundColor="#F5F5F5"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/baseline_email_24"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                app:layout_constraintTop_toTopOf="parent">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etemail2"
+                    android:paddingVertical="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etpsswrd1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:layout_marginTop="30dp"
+                app:boxCornerRadiusTopStart="40dp"
+                app:boxCornerRadiusTopEnd="40dp"
+                app:boxCornerRadiusBottomStart="40dp"
+                app:boxCornerRadiusBottomEnd="40dp"
+                app:boxBackgroundColor="#F5F5F5"
+                app:endIconMode="password_toggle"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                app:layout_constraintTop_toBottomOf="@+id/etemail1">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etpsswrd2"
+                    android:paddingVertical="22dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_forgot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:text="Forgot Password?"
+                app:layout_constraintTop_toBottomOf="@+id/etpsswrd1"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_SignIn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:text="Sign IN"
+                android:padding="15dp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_forgot"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                android:backgroundTint="#CDE0C9"/>
+            <TextView
+                android:id="@+id/etdont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't have an account?"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/btn_SignIn"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_dontsignup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/vguideinner1"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:text="Sign Up"
+                app:layout_constraintTop_toBottomOf="@+id/etdont"
+                app:layout_constraintEnd_toStartOf="@+id/vguideinner2"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
