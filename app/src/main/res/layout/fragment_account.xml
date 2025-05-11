@@ -51,7 +51,7 @@
         android:id="@+id/tvname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sample Name"
+
         app:layout_constraintStart_toStartOf="@+id/vguide1"
         app:layout_constraintTop_toBottomOf="@+id/tvyp"
         android:textSize="20sp"/>
@@ -59,7 +59,7 @@
         android:id="@+id/tvage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Age"
+
         app:layout_constraintStart_toStartOf="@+id/vguide1"
         app:layout_constraintTop_toBottomOf="@+id/tvname"
         android:textSize="20sp"/>
@@ -67,7 +67,7 @@
         android:id="@+id/tvgender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Gender"
+
         app:layout_constraintStart_toStartOf="@+id/vguide1"
         app:layout_constraintTop_toBottomOf="@+id/tvage"
         android:textSize="20sp"/>
@@ -75,7 +75,7 @@
         android:id="@+id/tvweight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Weight"
+
         app:layout_constraintStart_toStartOf="@+id/vguide1"
         app:layout_constraintTop_toBottomOf="@+id/tvgender"
         android:textSize="20sp"/>

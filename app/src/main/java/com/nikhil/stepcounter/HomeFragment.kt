@@ -46,6 +46,8 @@ class HomeFragment : Fragment(),SensorEventListener {
     val db= Firebase.firestore
     var collectioname="Users"
     var subcollection="StepData"
+    private var stepsAtStartOfDay = 0f
+    private var currentDate = ""
     private var auth:FirebaseAuth=FirebaseAuth.getInstance()
     private var param1: String? = null
     private var param2: String? = null
@@ -63,6 +65,7 @@ class HomeFragment : Fragment(),SensorEventListener {
         savedInstanceState: Bundle?
     ): View? {
         binding=FragmentHomeBinding.inflate(layoutInflater)
+        currentDate = getCurrentDate()
         if (ContextCompat.checkSelfPermission(requireContext(),android.Manifest.permission.ACTIVITY_RECOGNITION)!= PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACTIVITY_RECOGNITION),1)
@@ -115,7 +118,12 @@ class HomeFragment : Fragment(),SensorEventListener {
             val daily=10000
             val uid=auth.currentUser?.uid
             Log.e("","uid:${uid}")
-            val curdate=SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+            val curdate=getCurrentDate()
+            if (curdate != currentDate) {
+                save(currentDate, (totalsteps - stepsAtStartOfDay).toInt())
+                stepsAtStartOfDay = totalsteps
+                currentDate = curdate
+            }
             val steps=Steps(date = curdate, totalsteps = totalsteps.toInt(), dailygoal = daily,calories=calories.toInt(),distance=distance.toInt())
 
             binding.stepProgress.progress=progress
@@ -134,5 +142,31 @@ class HomeFragment : Fragment(),SensorEventListener {
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
 
+    }
+    private fun getCurrentDate(): String {
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        return dateFormat.format(Date())
+    }
+    private fun save(date: String, steps: Int) {
+        val uid = auth.currentUser?.uid ?: return
+        val dailyGoal = 10000
+        val distance = steps * 0.8f
+        val calories = steps * 0.05f
+
+        val stepData = Steps(
+            date = date,
+            totalsteps = steps,
+            dailygoal = dailyGoal,
+            calories = calories.toInt(),
+            distance = distance.toInt()
+        )
+
+        db.collection(collectioname).document(uid).update("data", FieldValue.arrayUnion(stepData))
+            .addOnSuccessListener {
+                Log.e("Firestore", "Saved $steps steps for $date")
+            }
+            .addOnFailureListener {
+                Log.e("Firestore", "Failed to save steps for $date")
+            }
     }
 }
