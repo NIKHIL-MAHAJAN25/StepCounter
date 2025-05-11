@@ -135,7 +135,7 @@ class GraphFragment : Fragment() {
         xAxis?.valueFormatter = IndexAxisValueFormatter(labels)
         xAxis?.position = com.github.mikephil.charting.components.XAxis.XAxisPosition.BOTTOM
         xAxis?.setDrawLabels(true)
-        xAxis?.textColor = ContextCompat.getColor(requireContext(), R.color.black)
+        xAxis?.textColor = ContextCompat.getColor(requireContext(), R.color.white)
         barChart?.setTouchEnabled(false)
     }
 
