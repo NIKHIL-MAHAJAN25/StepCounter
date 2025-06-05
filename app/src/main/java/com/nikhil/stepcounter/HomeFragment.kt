@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PackageManagerCompat
 import com.google.firebase.Firebase
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.SetOptions
@@ -65,7 +66,7 @@ class HomeFragment : Fragment(),SensorEventListener {
         savedInstanceState: Bundle?
     ): View? {
         binding=FragmentHomeBinding.inflate(layoutInflater)
-        currentDate = getCurrentDate()
+
         if (ContextCompat.checkSelfPermission(requireContext(),android.Manifest.permission.ACTIVITY_RECOGNITION)!= PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(android.Manifest.permission.ACTIVITY_RECOGNITION),1)
@@ -118,55 +119,74 @@ class HomeFragment : Fragment(),SensorEventListener {
             val daily=10000
             val uid=auth.currentUser?.uid
             Log.e("","uid:${uid}")
-            val curdate=getCurrentDate()
-            if (curdate != currentDate) {
-                save(currentDate, (totalsteps - stepsAtStartOfDay).toInt())
-                stepsAtStartOfDay = totalsteps
-                currentDate = curdate
-            }
-            val steps=Steps(date = curdate, totalsteps = totalsteps.toInt(), dailygoal = daily,calories=calories.toInt(),distance=distance.toInt())
+            val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+            val currentDateStr = dateFormat.format(Date())
+
+
+            val steps=Steps(date=currentDateStr,timestamp = Timestamp.now(), totalsteps = totalsteps.toInt(), dailygoal = daily,calories=calories.toInt(),distance=distance.toInt())
 
             binding.stepProgress.progress=progress
             binding.stepCountText.text=totalsteps.toString()
             binding.tvdistance.text=distance.toString()
             binding.tvcalburned.text=calories.toString()
-            db.collection(collectioname).document(uid!!).update("data",FieldValue.arrayUnion(steps)).addOnSuccessListener{
-                Log.e("Firestore", "Steps data updated successfully")
-            }
-                .addOnFailureListener {
-                    Log.e("Firestore", "Failed to update steps data")
+//            for handling double bangs issue
+            if (uid != null) {
+                val userDocRef = db.collection(collectioname).document(uid)
+
+
+                userDocRef.get().addOnSuccessListener { documentSnapshot ->
+                    if (documentSnapshot.exists()) {
+                        //fetches array of data parameter ie values of Steps Data Class
+                        val dataArray = documentSnapshot.get("data") as? ArrayList<HashMap<String, Any>> ?: ArrayList()
+                        var todayEntryFound = false//flags
+                        var indexToUpdate = -1//starting index
+
+                        for (i in dataArray.indices) {// for loop for index of array fetched
+                            val entryDate = dataArray[i]["date"] as? String// fetches dates out of the array fetched as string
+                            if (entryDate == currentDateStr) {//checks whether it alrerady existed
+                                todayEntryFound = true//flag true
+                                indexToUpdate = i//fetches index to update
+                                break//breaks loop to stop loop because we found the thing
+                            }
+                        }
+
+                        if (todayEntryFound) {//for updating when entry already exists
+
+                            userDocRef.update("data.$indexToUpdate", steps)
+                                .addOnSuccessListener {
+                                    Log.e("Firestore", "Steps data updated successfully for $currentDateStr")
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.e("Firestore", "Failed to update steps data: ${e.message}")
+                                }
+                        } else {//for new morning data when date hasnt been registered
+
+                            userDocRef.update("data", FieldValue.arrayUnion(steps))
+                                .addOnSuccessListener {
+                                    Log.e("Firestore", "New steps data added successfully for $currentDateStr")
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.e("Firestore", "Failed to add new steps data: ${e.message}")
+                                }
+                        }
+                    }
+                }.addOnFailureListener { e ->
+                    Log.e("Firestore", "Error: ${e.message}")
                 }
-            Log.d("Steps", "Total steps: $totalsteps")
+            }
         }
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-
-    }
-    private fun getCurrentDate(): String {
-        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-        return dateFormat.format(Date())
-    }
-    private fun save(date: String, steps: Int) {
-        val uid = auth.currentUser?.uid ?: return
-        val dailyGoal = 10000
-        val distance = steps * 0.8f
-        val calories = steps * 0.05f
-
-        val stepData = Steps(
-            date = date,
-            totalsteps = steps,
-            dailygoal = dailyGoal,
-            calories = calories.toInt(),
-            distance = distance.toInt()
-        )
-
-        db.collection(collectioname).document(uid).update("data", FieldValue.arrayUnion(stepData))
-            .addOnSuccessListener {
-                Log.e("Firestore", "Saved $steps steps for $date")
-            }
-            .addOnFailureListener {
-                Log.e("Firestore", "Failed to save steps for $date")
-            }
     }
 }
+//Old Logic issue-Duplicate entries due to arrayunion of steps as arrayunion deepsearches for unique values and as steps change each time every time its unique
+//db.collection(collectioname).document(uid!!).update("data",FieldValue.arrayUnion(steps)).addOnSuccessListener{
+//    Log.e("Firestore", "Steps data updated successfully")
+//}
+//.addOnFailureListener {
+//    Log.e("Firestore", "Failed to update steps data")
+//}
+//Log.d("Steps", "Total steps: $totalsteps")
+//}
+//}

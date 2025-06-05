@@ -13,6 +13,7 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.google.firebase.Firebase
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.QueryDocumentSnapshot
@@ -56,28 +57,40 @@ class GraphFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentGraphBinding.inflate(layoutInflater)
+        val uid = auth.currentUser?.uid
+        barChart = binding.barChart
 
+        barChart = binding.barChart
+
+        db.collection(collectioname).document(uid!!).get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                val dataArray = documentSnapshot.get("data") as? ArrayList<HashMap<String, Any>>
+                    ?: arrayListOf()
+
+                val stepsList = dataArray.mapNotNull { map ->
+                    val date = map["date"] as? String
+                    val totalSteps = (map["totalsteps"] as? Long)?.toInt()
+
+                    if (date != null && totalSteps != null) {
+                        Steps(
+                            date = date,
+                            totalsteps = totalSteps
+                        )
+                    } else null // skip if either value is null
+                }
+
+
+                updateChart(stepsList)
+            }
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val uid = auth.currentUser?.uid
-        barChart = binding.barChart
-        db.collection(collectioname).document(uid!!).addSnapshotListener { snapshots, e ->
-            if (e != null) {
-                return@addSnapshotListener
-            }
-            if (snapshots != null && snapshots.exists()) {
-                val user = snapshots.toObject(User::class.java)
-                val stepsList = user?.data ?: arrayListOf()
-                Log.e("Firestore", "Fetched steps list: $stepsList")
-                updateChart(stepsList)
-            } else {
-                Log.e("Firestore", "No user data found.")
-            }
-        }
+
     }
+
 
 
     companion object {
@@ -99,9 +112,6 @@ class GraphFragment : Fragment() {
                 }
             }
     }
-
-
-
     private fun updateChart(stepsList: List<Steps>) {
         val entries = ArrayList<BarEntry>()
         val labels = ArrayList<String>()
@@ -140,3 +150,7 @@ class GraphFragment : Fragment() {
     }
 
 }
+
+
+
+
